@@ -8,7 +8,7 @@ WORKDIR /usr/src/app
 
 # Installing python dependencies
 COPY requirements.txt /usr/src/app/
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install -r requirements.txt
 
 # Copying src code to Container
 COPY . /usr/src/app
@@ -20,8 +20,6 @@ ENV PORT 8080
 # Exposing Ports
 EXPOSE $PORT
 
-# Setting Persistent data
-VOLUME ["/app-data"]
 
 # Running Python Application
 CMD gunicorn -b :$PORT -c gunicorn.conf.py main:app
